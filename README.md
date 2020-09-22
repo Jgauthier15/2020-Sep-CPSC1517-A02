@@ -1,1 +1,3 @@
-# 2020-Sep-CPSC1517-A02
+# Starter Basic Kit
+
+Contains: ReadMe, gitignore and gitattributes
