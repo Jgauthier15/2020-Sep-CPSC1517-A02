@@ -18,7 +18,27 @@
     //this is C# coding so case sensitive and spelling is important
     //if a controlname is NOT found, you will receive a value of null
     //ALL data coming from the form will be a string.
-    entereddata = Request.Form["cscodingname"];
+
+    //extract data
+    var name = Request.Form["cscodingname"];
+    var email = Request.Form["Email"];
+    //note, the name PressMe has been given to both buuttons
+    //the data returned from the control will be the data assigned to
+    //  the value parameter
+    //thus, thebutton will have a value of either name or email, NOT both.
+    var thebutton = Request.Form["PressMe"];
+
+    //entereddata = Request.Form["cscodingname"];  (**unsure where i got this from**)
+
+    //start your testing for your critical path
+    if (thebutton.Equals("name"))
+    {
+        entereddata = name;
+    }
+    else
+    {
+        entereddata = email;
+    }
 }
 else
 {
