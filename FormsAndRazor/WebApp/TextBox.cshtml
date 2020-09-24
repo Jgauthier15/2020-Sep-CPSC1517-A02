@@ -1,4 +1,7 @@
 ﻿@{
+    //when this page execute, the execution is physically top to bottom
+    //this requires the developer to properly create logic so that
+    //  proper critical paths are produced
     Layout = "~/_Layout.cshtml";
     Page.Title = "TextBox Sample";
     string entereddata = "";
@@ -6,7 +9,20 @@
 
 @if (IsPost)
 {
+    //IsPost tests whether the page is 1st time or a post back from the browser
+    //the value of the flag will be false on the first time
+    //on follow up post backs, the flag will be true
+
+    //extract any needed information that is data from the form
+    //extracting data from  a control uses Request.Form["controlname"]
+    //this is C# coding so case sensitive and spelling is important
+    //if a controlname is NOT found, you will receive a value of null
+    //ALL data coming from the form will be a string.
     entereddata = Request.Form["cscodingname"];
+}
+else
+{
+    entereddata = "you have requested this page for the 1st time";
 }
 
 
@@ -19,8 +35,15 @@
                 <td><input type="text" id="javascriptname" name="cscodingname" /></td>
             </tr>
             <tr>
+                <td>Enter your email:</td>
+                <td><input type="text" id="Email" name="Email" /></td>
+            </tr>
+            <tr>
                 <td colspan="2">
-                    <button type="submit" id="PressMe" name="PressMe">Press Me</button>
+                    <button type="submit" id="PressMe" name="PressMe" value="name">
+                    Display Name</button>&nbsp;&nbsp;&nbsp;
+                    <button type="submit" id="PressMe" name="PressMe" value="email">
+                    Display Email</button>
                 </td>
             </tr>
             <tr>
