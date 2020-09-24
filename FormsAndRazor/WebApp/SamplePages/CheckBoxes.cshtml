@@ -1,0 +1,21 @@
+﻿@{Layout = "~/_Layout.cshtml";
+    //this is a c# comment
+    //setting the Page Title changes your
+    //  tab on the browser
+    Page.Title = "Hello World";
+}
+
+@section banner{<h3>Form Using CheckBoxes</h3>}
+
+@* create a drop down sub menu *@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#"
+       id="navbarSubMenu" data-toggle="dropdown"
+       style="color:black"
+       aria-haspopup="true" aria-expanded="false">Samples</a>
+    <div class="dropdown-menu" aria-labelledby="navbarSubMenu">
+        <a class="dropdown-item"
+           href="~/SamplePages/TextBox.cshtml"
+           style="color:black">CheckBoxes</a>
+    </div>
+</li>
