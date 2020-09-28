@@ -1,21 +1,71 @@
-﻿@{Layout = "~/_Layout.cshtml";
-    //this is a c# comment
-    //setting the Page Title changes your
-    //  tab on the browser
-    Page.Title = "Hello World";
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "CheckBox Sample";
+    //the 1st time through, the form has yet to be created
+    //any reference to a control on the 1st time through will be null
+    //remember to initialize the associated global variable in the
+    //  else of the if(IsPost)
+    string choices = Request.Form["CheckBoxGroup"];
 }
 
 @section banner{<h3>Form Using CheckBoxes</h3>}
 
-@* create a drop down sub menu *@
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#"
-       id="navbarSubMenu" data-toggle="dropdown"
-       style="color:black"
-       aria-haspopup="true" aria-expanded="false">Samples</a>
-    <div class="dropdown-menu" aria-labelledby="navbarSubMenu">
-        <a class="dropdown-item"
-           href="~/SamplePages/TextBox.cshtml"
-           style="color:black">CheckBoxes</a>
+@if (IsPost)
+{
+    //IsPost means your form has been displayed on the Users Browser
+    //  and your control exists
+    //It does not mean that any action was done against it by the User.
+    if (choices.IsEmpty())
+    {
+        <p><span style="color:firebrick">So you do not like to play games.</span></p>
+        //if no choices were made the choices string becomes null
+        //re-initialize the variable
+        choices = "";
+    }
+    else
+    {
+        //choice will be a string of values seperated by a comma (default)
+        //I will need to split this string up on the commas
+        //to do so, we will use the string method .Split(delimiter)
+        //the delimiter is the character that seperates your values
+        <p>
+            I see you like to use the following gaming platform(s):
+            <ul>
+                @foreach(var item in choices.Split(','))
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        </p>
+    }
+}
+else
+{
+    choices = "";
+}
+
+<form id="theForm" method="post">
+    <div class="row">
+        <div class="offset-1">
+            <label for="CheckBoxGroup">Select Your Favourite Gaming Platform(s):</label><br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="PS4" 
+                   @(Array.IndexOf(choices.Split(','),"PS4") >=0?"checked":"") />PS4<br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="PC" 
+                   @(Array.IndexOf(choices.Split(','),"PC") >=0?"checked":"") />Computer<br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="Xbox" 
+                   @(Array.IndexOf(choices.Split(','),"Xbox") >=0?"checked":"") />Xbox One<br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="Switch" 
+                   @(Array.IndexOf(choices.Split(','),"Switch") >=0?"checked":"") />Switch<br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="Wii" 
+                  @(Array.IndexOf(choices.Split(','),"Wii") >=0?"checked":"") />Wii<br />
+        </div>
     </div>
-</li>
+    <div class="row">
+        <div class="offset-5">
+            <button type="submit" name="theButton" id="theButton" value="submit"
+                    class="btn btn-primary">
+                Submit
+            </button>
+        </div>
+    </div>
+</form>

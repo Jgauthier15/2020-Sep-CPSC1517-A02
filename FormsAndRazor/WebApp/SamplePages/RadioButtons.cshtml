@@ -1,22 +1,74 @@
 ﻿@{Layout = "~/_Layout.cshtml";
-    //this is a c# comment
-    //setting the Page Title changes your
-    //  tab on the browser
-    Page.Title = "Hello World";
+    Page.Title = "RadioButton Sample";
+    //global variables
+    string language = Request.Form["LanguageGroup"];
+    string script = Request.Form["ScriptGroup"];
 }
 
 @section banner{<h3>Form Using RadioButtons</h3>}
-    
-    
-    @* create a drop down sub menu *@
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#"
-       id="navbarSubMenu" data-toggle="dropdown"
-       style="color:black"
-       aria-haspopup="true" aria-expanded="false">Samples</a>
-    <div class="dropdown-menu" aria-labelledby="navbarSubMenu">
-        <a class="dropdown-item"
-           href="~/SamplePages/TextBox.cshtml"
-           style="color:black">RadioButtons</a>
+
+
+@*setup my processing code*@
+@if (IsPost)
+{
+    //did User actually select a radio button?
+    if (language.IsEmpty() || script.IsEmpty())
+    {
+        <p><span style="color:firebrick">Make a selection from both programs and coding.</span></p>
+    }
+    else
+    {
+        if (language.Equals("C#", StringComparison.OrdinalIgnoreCase))
+        {
+            <p>You will greatly enjoy the CPSC1517 as we use C#.</p>
+        }
+        else
+        {
+            <p>Too bad. Unfortunately, the CPSC1517 course does not use @language </p>
+        }
+        if (script.ToUpper().Equals("RAZOR"))
+        {
+            <p>You will greatly enjoy the CPSC1517 as we use Razor.</p>
+        }
+        else
+        {
+            <p>Too bad. Unfortunately, the CPSC1517 course does not use @script </p>
+        }
+    }
+}
+else
+{
+    //the else is a great place to do initialization to your form
+    //  for the first pass
+    language = "";
+    script = "";
+}
+
+<form id="theForm" method="post">
+    <div class="row">
+        <div class="offset-1">
+            <label for="LanguageGroup">Select Your Favourite Programming Language</label><br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="C#" 
+                   checked="@(language.Equals("C#") ? true:false)"/>C#<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Cobol"
+                   checked="@(language.Equals("Cobol") ? true:false)"/>Cobol<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="VB" 
+                   checked="@(language.Equals("VB") ? true:false)"/>Visual Basic<br />
+            <input type="radio" name="LanguageGroup" id="LanguageGroup" value="Fortran" 
+                   checked="@(language.Equals("Fortran") ? true:false)"/>Fortran<br />
+            <br />
+            <label for="ScriptGroup">Select Your Favourite Scripting Code</label><br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="JS" 
+                   checked="@(script.Equals("JS") ? true:false)"/>Javascript<br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="Razor" 
+                   checked="@(script.Equals("Razor") ? true:false)"/>Razor<br />
+            <input type="radio" name="ScriptGroup" id="ScriptGroup" value="PHP" 
+                   checked="@(script.Equals("PHP") ? true:false)"/>PHP<br />
+        </div>
     </div>
-</li>
+    <div class="row">
+        <div class="offset-2">
+            <button type="submit" name="theButton" id="theButton" value="submit">Submit</button>
+        </div>
+    </div>
+</form>
