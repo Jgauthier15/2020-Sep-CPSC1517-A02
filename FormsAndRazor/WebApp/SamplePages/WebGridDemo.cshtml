@@ -66,7 +66,7 @@
                 gridinstance.Column(columnName: "ProductName", header: "Product"),
                 gridinstance.Column(columnName: "QuantityPerUnit", header: "Pkg"),
                 gridinstance.Column(columnName: "UnitPrice", header: "$",
-                    format: (item)=> item.UnitPrice.ToString("0.00")),
+                    format: (item)=> @item.UnitPrice.ToString("0.00")),
                 gridinstance.Column(columnName: "Discontinued", header: "Disc",
                     format: @<input name="Discountinued" type="checkbox"
                                     value="@item.Discontinued"
