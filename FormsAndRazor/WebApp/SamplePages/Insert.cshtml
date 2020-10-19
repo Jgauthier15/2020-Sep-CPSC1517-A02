@@ -16,11 +16,11 @@
     //obtain the record collections (dataset) for the supplierid and categoryid
     var db = Database.Open("NWDB");
     var supplierquery = @"SELECT SupplierID, CompanyName
-FROM Suppliers
-Order by CompanyName";
+                            FROM Suppliers
+                            Order by CompanyName";
     var categoryquery = @"SELECT CategoryID, CategoryName
-FROM Categories
-Order by CategoryName";
+                            FROM Categories
+                            Order by CategoryName";
     var supplierlist = db.Query(supplierquery);
     var categorylist = db.Query(categoryquery);
 
