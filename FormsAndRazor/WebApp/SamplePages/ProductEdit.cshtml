@@ -31,12 +31,25 @@
         }
         else
         {
+
             discontinued = "1";
         }
     }
     else
     {
-        productid = pid;
+        //WHY?
+        //validating the passed value
+        //if ok, then i place in my working pkey field
+        int npid = 0;
+        if (int.TryParse(pid, out npid))
+        {
+            productid = npid.ToString();
+        }
+        else
+        {
+            productid = "0";
+        }
+        
         discontinued = "0";
     }
     var db = Database.Open("NWDB");
@@ -51,7 +64,12 @@
     var queryStatement = "SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued "
                         + "FROM Products "
                         + "WHERE ProductID = @0";
-    var queryProducts = db.QuerySingle(queryStatement, pid);
+    //WHY?
+    //queryProducts needs to be a datatype of a returned record
+    //  from the database
+    //it is also global
+    //var obtains its datatype on its first use in your program 
+    var queryProducts = db.QuerySingle(queryStatement, productid);
 }
 
 
