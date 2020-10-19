@@ -109,7 +109,7 @@ Order by CategoryName";
         productname = "";
         supplierid = "";
         categoryid = "0";
-        quantityperunit = "0";
+        quantityperunit = "";
         unitprice = "";
         unitsinstock = "";
         unitsonorder = "";
@@ -293,8 +293,12 @@ else
                     class="btn btn-primary">
                 Submit
             </button>&nbsp;&nbsp;
+            @*formnovalidate will tell your browser to not validate HTML5 validation.
+                since validation controsl are executed by Validation.IsValid, properly
+                implemented logic will ensure whether validation is executed or not
+                for these types of controls*@
             <button type="submit" name="theButton" id="theButton" value="clear"
-                    class="btn btn-light">
+                    class="btn btn-light" formnovalidate>
                 Clear
             </button>
         </div>

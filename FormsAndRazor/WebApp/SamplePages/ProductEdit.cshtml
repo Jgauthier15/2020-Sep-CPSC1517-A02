@@ -64,7 +64,7 @@
     var queryStatement = "SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued "
                         + "FROM Products "
                         + "WHERE ProductID = @0";
-    //WHY?
+    //WHY? (it's done in the program)
     //queryProducts needs to be a datatype of a returned record
     //  from the database
     //it is also global
@@ -296,7 +296,7 @@ else //for IsPost
     //if this page is being shown for the "first time"
     //the page accesses the database for the current record
     //to display to the user
-    queryProducts = db.QuerySingle(queryStatement, pid);
+    queryProducts = db.QuerySingle(queryStatement, productid);
 
     //moving the current record data to the form controls
     //NEVER code to the data supplied
