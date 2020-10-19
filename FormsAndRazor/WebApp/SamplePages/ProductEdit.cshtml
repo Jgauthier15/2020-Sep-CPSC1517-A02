@@ -105,7 +105,7 @@
                 @*//  Scenario: Physical Removal of the Record
 
                 var deletecommand = @"DELETE Products
-              WHERE ProductID=@0";
+                                    WHERE ProductID=@0";
 
                 //3)execution
                 //the RETURNED value of the execution is the number of rows affected
@@ -121,6 +121,7 @@
                         </span>
                         <a href="~/SamplePages/ProductSearch.cshtml">go to search</a>
                     </p>
+                    productid="";
                 }
                 else
                 {
@@ -134,7 +135,12 @@
                     </p>
                     productid = "";
                 }*@
+
+
                 //  Scenario 2: Logical Removal of the Record
+                //the record is NOT physically removed from the database but FLAGGED as Do Not Use
+                //this delete is actually an update where you logic sets whatever flag is on the record to the appropriate
+                //value indicating that the record is to be LOGICALLY considered deleted
 
                 var deletecommand = @"UPDATE Products
                                     SET Discontinued=1
@@ -154,7 +160,11 @@
                         </span>
                         <a href="~/SamplePages/ProductSearch.cshtml">go to search</a>
                     </p>
-                    discontinued = "0";
+
+                    //Remember to set the logic flag field (if it is being displayed)
+                    //  to indicate the record is removed
+                    discontinued = "1";
+                    productid = ""; //this is optional
                 }
                 else
                 {
@@ -351,8 +361,12 @@ else //for IsPost
         </div>
         <div class="row">
             <div class="col-sm-12 text-center">
-                <button type="submit" name="theButton" id="theUpdate" class="btn btn-primary" value="update">Update</button>&nbsp;&nbsp;&nbsp;
-                <button type="submit" name="theButton" id="theDelete" class="btn btn-primary" value="delete">Delete</button>&nbsp;&nbsp;&nbsp;
+                <button type="submit" name="theButton" id="theUpdate" 
+                        class="btn btn-primary" value="update">Update</button>&nbsp;&nbsp;&nbsp;
+                <button type="submit" name="theButton" id="theDelete" 
+                        class="btn btn-primary" value="delete" 
+                        onclick="return confirm('Are you sure you wish to discontinue this product?')"
+                        >Discontinue</button>&nbsp;&nbsp;&nbsp;
                 <button type="submit" name="theButton" id="theCancel" class="btn btn-primary" value="cancel">Cancel</button>
             </div>
         </div>
