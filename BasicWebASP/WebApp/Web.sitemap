@@ -15,7 +15,9 @@
                  description="the entry on the root menu, BUT is the start of a drop down menu">
       <!--a drop down menu item of Samples-->
       <siteMapNode url="~/SamplePages/CommonControls.aspx" title="Common Controls"
-                   description=""></siteMapNode>
+                   description="a submenu item"></siteMapNode>
+      <siteMapNode url="~/SamplePages/JobApp.aspx" title="Job Application"
+             description=""></siteMapNode>
     </siteMapNode>
     <siteMapNode url="~/Contact.aspx" title="Contact"  description="on root menu" />
     <siteMapNode url="~/About.aspx" title="About"  description="on root menu" />
