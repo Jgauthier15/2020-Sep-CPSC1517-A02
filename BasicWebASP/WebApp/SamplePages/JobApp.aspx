@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Job Application</h1>
     <div class="row">
-        <div class="offset-1 col-10">
+        <div class="col-md-offset-1 col-10">
             <blockquote class="alert alert-info" style="font-style: italic">
                 This page will illustrate some simple controls to fill out an online job application.
                 The form will use a basic 2 column bootstrap layout. The form invenstigates the processing
@@ -41,11 +41,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-me-6">
+        <div class="col-md-6">
             <asp:Button ID="Submit" runat="server" Text="Submit"
-                class="btn btn-secondary" />&nbsp;&nbsp;
+                class="btn btn-secondary" OnClick="Submit_Click" />&nbsp;&nbsp;
             <asp:Button ID="Clear" runat="server" Text="Clear"
-                class="btn btn-light" />
+                class="btn btn-light" OnClick="Clear_Click" />
             <br />
             <br />
             <asp:Label ID="MessageLabel" runat="server"></asp:Label>
