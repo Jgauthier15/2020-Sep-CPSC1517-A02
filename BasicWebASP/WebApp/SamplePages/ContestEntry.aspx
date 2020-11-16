@@ -124,7 +124,7 @@
         <div class="col-md-6">
             <fieldset class="form-horizontal">
                 <legend>Contest Application Form</legend>
-
+                
                 <asp:Label ID="Label1" runat="server" Text="First Name"
                     AssociatedControlID="FirstName"></asp:Label>
                 <asp:TextBox ID="FirstName" runat="server"
@@ -148,7 +148,7 @@
                 <asp:Label ID="Label8" runat="server" Text="City"
                     AssociatedControlID="City"></asp:Label>
                 <asp:TextBox ID="City" runat="server"
-                    ToolTip="Enter your City name" MaxLength="50"></asp:TextBox>
+                    ToolTip="Enter your City name" MaxLength="50" OnTextChanged="City_TextChanged"></asp:TextBox>
 
                 <asp:Label ID="Label9" runat="server" Text="Province"
                     AssociatedControlID="Province"></asp:Label>
