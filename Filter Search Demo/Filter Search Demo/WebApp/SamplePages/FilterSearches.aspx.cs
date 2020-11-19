@@ -343,21 +343,21 @@ namespace WebApp.NorthwindPages
 
         protected void FindCategories_Click(object sender, EventArgs e)
         {
-            if (SupplierList.SelectedIndex == 0)
+            if (SupplierListV5.SelectedIndex == 0)
             {
                 errormsgs.Add("Select a supplier to obtain Categories.");
                 LoadMessageDisplay(errormsgs, "alert alert-info");
-                SupplierList.DataSource = null;
-                SupplierList.DataBind();
-                EmployeesGridViewV4.DataSource = null;
-                EmployeesGridViewV4.DataBind();
+                CategoryListV5.DataSource = null;
+                CategoryListV5.DataBind();
+                ProductsGridViewV5.DataSource = null;
+                ProductsGridViewV5.DataBind();
             }
             else
             {
                 try
                 {
-                    TerritoryController sysmgr = new TerritoryController();
-                    List<Territory> info = sysmgr.Territory_GetByRegion(int.Parse(RegionList.SelectedValue));
+                    SupplierController sysmgr = new SupplierController();
+                    List<SupplierCategories> info = sysmgr.Suppliers_GetCategories(int.Parse(SupplierListV5.SelectedValue));
                     if (info.Count == 0)
                     {
                         errormsgs.Add("No data found for the region");
@@ -365,16 +365,56 @@ namespace WebApp.NorthwindPages
                     }
                     else
                     {
-                        info.Sort((x, y) => x.TerritoryDescription.CompareTo(y.TerritoryDescription));
+                        info.Sort((x, y) => x.CategoryName.CompareTo(y.CategoryName));
                         //Second Dropdown list drill down
-                        TerritoryList.DataSource = info;
-                        TerritoryList.DataTextField = nameof(Territory.TerritoryDescription);
-                        TerritoryList.DataValueField = nameof(Territory.TerritoryID);
-                        TerritoryList.DataBind();
-                        TerritoryList.Items.Insert(0, "select....");
+                        CategoryListV5.DataSource = info;
+                        CategoryListV5.DataTextField = nameof(Category.CategoryName);
+                        CategoryListV5.DataValueField = nameof(Category.CategoryID);
+                        CategoryListV5.DataBind();
+                        CategoryListV5.Items.Insert(0, "select....");
                         //GridView
-                        EmployeesGridViewV4.DataSource = null;
-                        EmployeesGridViewV4.DataBind();
+                        ProductsGridViewV5.DataSource = null;
+                        ProductsGridViewV5.DataBind();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    errormsgs.Add(GetInnerException(ex).ToString());
+                    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                }
+            }
+        }
+
+        protected void FindSupplierCategoryProducts_Click(object sender, EventArgs e)
+        {
+            if (CategoryListV5.SelectedIndex == 0)
+            {
+                errormsgs.Add("Select a product to view the product information.");
+                LoadMessageDisplay(errormsgs, "alert alert-info");
+                ProductsGridViewV5.DataSource = null;
+                ProductsGridViewV5.DataBind();
+            }
+            else
+            {
+                try
+                {
+                    ProductController sysmgr = new ProductController();
+                    List<Product> info = sysmgr.Products_GetForSupplierCategory
+                        (int.Parse(SupplierListV5.SelectedValue),
+                        int.Parse(CategoryListV5.SelectedValue));
+                    if (info.Count == 0)
+                    {
+                        errormsgs.Add("No data found for the territory");
+                        LoadMessageDisplay(errormsgs, "alert alert-info");
+                    }
+                    else
+                    {
+                        info.Sort((x, y) => x.ProductName.CompareTo(y.ProductName));
+
+                        //GridView
+                        ProductsGridViewV5.DataSource = info;
+                        ProductsGridViewV5.DataBind();
 
                     }
                 }
