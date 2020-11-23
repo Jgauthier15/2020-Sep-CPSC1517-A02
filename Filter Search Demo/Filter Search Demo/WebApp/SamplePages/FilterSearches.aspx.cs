@@ -405,7 +405,7 @@ namespace WebApp.NorthwindPages
                         int.Parse(CategoryListV5.SelectedValue));
                     if (info.Count == 0)
                     {
-                        errormsgs.Add("No data found for the territory");
+                        errormsgs.Add("No data found for the category");
                         LoadMessageDisplay(errormsgs, "alert alert-info");
                     }
                     else
