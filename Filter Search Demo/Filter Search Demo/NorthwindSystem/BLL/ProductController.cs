@@ -86,6 +86,15 @@ namespace NorthwindSystem.BLL
                 return results.ToList();
             }
         }
+        public Product Product_FindByID(int productid)
+        {
+            //return the record from the database via the DbSet collection
+            //where the pkey matches the supplied value
+            using (var context = new NorthwindContext())
+            {
+                return context.Products.Find(productid);
+            }
+        }
 
         #endregion
     }
