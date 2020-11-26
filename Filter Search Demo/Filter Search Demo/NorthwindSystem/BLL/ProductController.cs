@@ -8,12 +8,19 @@ using System.Threading.Tasks;
 using NorthwindSystem.Entities;
 using NorthwindSystem.DAL;
 using System.Data.SqlClient;        //needed for the SqlParameter Class
+using System.ComponentModel;        //required for ODS exposure
 #endregion
 
 namespace NorthwindSystem.BLL
 {
+    //expose this class to the ObjectDataSource wizard
+    //this will allow for EASY selection of values for
+    //  the wizard, and the wizard will generate my code
+    [DataObject]
     public class ProductController
     {
+        //expose the methods you wish the wizard to know about
+        [DataObjectMethod(DataObjectMethodType.Select,false)]
  
         #region Filter Search Demo Interface
         //to query your database using a non primary key value

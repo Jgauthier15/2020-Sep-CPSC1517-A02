@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 #region Additional Namespaces
 using NorthwindSystem.Entities;
 using NorthwindSystem.DAL;
+using System.Data.SqlClient;
+using System.ComponentModel;
 #endregion
 
 namespace NorthwindSystem.BLL
 {
+    [DataObject]
     public class CategoryController
     {
+        [DataObjectMethod(DataObjectMethodType.Select,false)]
         #region Filter Search Demo Interface
         public List<Category> Category_List()
         {

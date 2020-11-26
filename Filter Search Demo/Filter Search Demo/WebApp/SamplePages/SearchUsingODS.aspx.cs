@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApp.SamplePages
 {
-    public partial class GridViewCodeBehind : System.Web.UI.Page
+    public partial class SearchUsingODS : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,44 +18,11 @@ namespace WebApp.SamplePages
 
         protected Exception GetInnerException(Exception ex)
         {
-            while(ex.InnerException!=null)
+            while (ex.InnerException != null)
             {
                 ex = ex.InnerException;
             }
             return ex;
-        }
-
-        protected void Search_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ProductArg.Text))
-            {
-                MessageLabel.Text = "Enter a product name (or portion of) then press Search.";
-            }
-            else
-            {
-                try
-                {
-                    ProductController sysmgr = new ProductController();
-                    List<Product> info = sysmgr.Products_GetByPartialProductName
-                        (ProductArg.Text);
-                    if(info.Count > 0)
-                    {
-                        ProductList.DataSource = info;
-                        ProductList.DataBind();
-                    }
-                    else
-                    {
-                        MessageLabel.Text = "No products match your search value.";
-                        //to empty a GridView
-                        ProductList.DataSource = null;
-                        ProductList.DataBind();
-                    }
-                }
-                catch(Exception ex)
-                {
-                    MessageLabel.Text = GetInnerException(ex).Message;
-                }
-            }
         }
 
         protected void Clear_Click(object sender, EventArgs e)
@@ -105,20 +72,6 @@ namespace WebApp.SamplePages
             {
                 MessageLabel.Text = GetInnerException(ex).Message;
             }
-        }
-
-        protected void ProductList_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            //you must manually alter the current PageIndex on the GridView
-            //the collection size along with the PageSize will determine which 
-            //  rows of your dataset (collection) to display.
-            //the required page (group of records) is indicated by the pageindex
-            //the selected (new) pageindex is available to you via the 
-            //  GridViewPageEventArgs parameter e.NewPageIndex
-            ProductList.PageIndex = e.NewPageIndex;
-
-            //you MUST now refresh your data set (collection)
-            Search_Click(sender, new EventArgs());
         }
     }
 }

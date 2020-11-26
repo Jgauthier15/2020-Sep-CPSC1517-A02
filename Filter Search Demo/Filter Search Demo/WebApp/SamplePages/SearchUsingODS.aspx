@@ -1,17 +1,26 @@
-﻿<%@ Page Title="Using GridView" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GridViewCodeBehind.aspx.cs" Inherits="WebApp.SamplePages.GridViewCodeBehind" %>
+﻿<%@ Page Title="ODS Search" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchUsingODS.aspx.cs" Inherits="WebApp.SamplePages.SearchUsingODS" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <div class="row">
         <div class="jumbotron">
-            <h1>Filter Search using GridView</h1>
+            <h1>Filter Search using ODS for GridView</h1>
             <blockquote class="col-12 alert alert-info">
                 This web page uses only code behind techniques. This page uses a drill down
                 filter search involving a TextBox and GridView. The GridView demonstrates:
-                customization, paging and selection.
+                customization, paging and selection. This page will use ObjectDataSource techniques
+                for obtaining the data for the gridview.
             </blockquote>
         </div>
     </div>
+
+
+    <asp:RequiredFieldValidator ID="RequiredProductArg" runat="server" ErrorMessage="A value for the product name is required."
+        Display="None" SetFocusOnError="true" ControlToValidate="ProductArg">
+    </asp:RequiredFieldValidator>
+    <div class="row">
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+    </div>
+
 
     <%-- 2 column display --%>
     <div class="row">
@@ -20,7 +29,7 @@
             &nbsp;&nbsp
             <asp:TextBox ID="ProductArg" runat="server"></asp:TextBox>
             &nbsp;&nbsp
-            <asp:LinkButton ID="Search" runat="server" OnClick="Search_Click">
+            <asp:LinkButton ID="Search" runat="server">
                 <i class="fa fa-search"></i>Search</asp:LinkButton>
             &nbsp;&nbsp
             <asp:LinkButton ID="Clear" runat="server" OnClick="Clear_Click"
@@ -33,9 +42,11 @@
             <%-- GridView --%>
             <asp:GridView ID="ProductList" runat="server"
                 CssClass="table table-striped" GridLines="Horizontal"
-                BorderStyle="None" AutoGenerateColumns="False" OnSelectedIndexChanged="ProductList_SelectedIndexChanged" 
-                AllowPaging="True" PageSize="4" OnPageIndexChanging="ProductList_PageIndexChanging">
-            <%-- /GridView --%>
+                BorderStyle="None" AutoGenerateColumns="False"
+                OnSelectedIndexChanged="ProductList_SelectedIndexChanged" 
+                DataSourceID="ProductListODS" AllowPaging="True"
+                PageSize="4">
+                <%-- /GridView --%>
 
                 <Columns>
                     <asp:CommandField SelectText="View" ShowSelectButton="True" ButtonType="Button"
@@ -43,8 +54,8 @@
                     <asp:TemplateField HeaderText="Name">
                         <ItemTemplate>
                             <%-- Hidden Field --%>
-                            <asp:HiddenField ID="ProductID" runat="server" 
-                                Value='<%# Eval("ProductID") %>'/>
+                            <asp:HiddenField ID="ProductID" runat="server"
+                                Value='<%# Eval("ProductID") %>' />
                             <%-- /Hidden Field --%>
                             <asp:Label runat="server"
                                 Text='<%# Eval("ProductName") %>'
@@ -53,6 +64,16 @@
                         <ItemStyle HorizontalAlign="Left"></ItemStyle>
                     </asp:TemplateField>
 
+                     <asp:TemplateField HeaderText="Cat">
+                        <ItemTemplate>
+                            <asp:DropDownList ID="CategoryList" runat="server" 
+                                DataSourceID="CategoryListODS" 
+                                DataTextField="CategoryName" 
+                                DataValueField="CategoryID"
+                                selectedvalue='<%# Eval("CategoryID") %>'>
+                            </asp:DropDownList>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Price">
                         <ItemTemplate>
@@ -74,7 +95,6 @@
                     </asp:TemplateField>
 
                 </Columns>
-                <PagerSettings FirstPageText="Start" LastPageText="End" Mode="NumericFirstLast" PageButtonCount="5" />
             </asp:GridView>
         </div>
 
@@ -116,5 +136,20 @@
             </table>
         </div>
     </div>
+    <%-- objectdatasource controls --%>
+    <asp:ObjectDataSource ID="ProductListODS" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="Products_GetByPartialProductName" 
+        TypeName="NorthwindSystem.BLL.ProductController">
 
+        <SelectParameters>
+            <asp:ControlParameter ControlID="ProductArg" 
+                PropertyName="Text" DefaultValue="gxvdgfv" 
+                Name="partialname" Type="String"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="CategoryListODS" runat="server" 
+        OldValuesParameterFormatString="original_{0}" 
+        SelectMethod="Category_List" 
+        TypeName="NorthwindSystem.BLL.CategoryController"></asp:ObjectDataSource>
 </asp:Content>
