@@ -32,8 +32,8 @@
 
             <%-- GridView --%>
             <asp:GridView ID="ProductList" runat="server"
-                CssClass="fa-table table-striped" GridLines="Horizontal"
-                BorderStyle="None" AutoGenerateColumns="False" OnSelectedIndexChanged="ProductList_SelectedIndexChanged">
+                CssClass="table table-striped" GridLines="Horizontal"
+                BorderStyle="None" AutoGenerateColumns="False" OnSelectedIndexChanged="ProductList_SelectedIndexChanged" AllowPaging="True" PageSize="4">
             <%-- /GridView --%>
 
                 <Columns>
@@ -73,6 +73,7 @@
                     </asp:TemplateField>
 
                 </Columns>
+                <PagerSettings FirstPageText="Start" LastPageText="End" Mode="NumericFirstLast" PageButtonCount="5" />
             </asp:GridView>
         </div>
 
