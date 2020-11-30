@@ -94,9 +94,11 @@
                         <ItemStyle HorizontalAlign="Right"></ItemStyle>
                     </asp:TemplateField>
                 </Columns>
+
                 <EmptyDataTemplate>
                     No data to display.
                 </EmptyDataTemplate>
+
             </asp:GridView>
         </div>
 
