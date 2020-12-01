@@ -28,25 +28,25 @@
     <asp:CompareValidator ID="CompareUnitPrice" runat="server"
         ErrorMessage="Unit Price must be a dollar amount of 0.00 or greater"
         Display="None" SetFocusOnError="true" ControlToValidate="UnitPrice"
-        Type="Double" Operator="GreaterThanEqual" ControlToCompare="0.00">
+        Type="Double" Operator="GreaterThanEqual" ValueToCompare="0.00">
     </asp:CompareValidator>
 
     <asp:CompareValidator ID="CompareUnitsInStock" runat="server"
         ErrorMessage="Quantity on hand must be an amount of 0 or greater"
         Display="None" SetFocusOnError="true" ControlToValidate="UnitsInStock"
-        Type="Integer" Operator="GreaterThanEqual" ControlToCompare="0">
+        Type="Integer" Operator="GreaterThanEqual" ValueToCompare="0">
     </asp:CompareValidator>
 
     <asp:CompareValidator ID="CompareUnitsOnOrder" runat="server"
         ErrorMessage="Quantity on order must be an amount of 0 or greater"
         Display="None" SetFocusOnError="true" ControlToValidate="UnitsOnOrder"
-        Type="Integer" Operator="GreaterThanEqual" ControlToCompare="0">
+        Type="Integer" Operator="GreaterThanEqual" ValueToCompare="0">
     </asp:CompareValidator>
 
     <asp:CompareValidator ID="CompareReorderLevel" runat="server"
         ErrorMessage="Reorder Level must be an amount of 0 or greater"
         Display="None" SetFocusOnError="true" ControlToValidate="ReorderLevel"
-        Type="Integer" Operator="GreaterThanEqual" ControlToCompare="0">
+        Type="Integer" Operator="GreaterThanEqual" ValueToCompare="0">
     </asp:CompareValidator>
 
     <div class="row">

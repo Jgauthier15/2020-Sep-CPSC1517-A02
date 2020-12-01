@@ -11,6 +11,8 @@ namespace WebApp.SamplePages
 {
     public partial class CRUD : System.Web.UI.Page
     {
+        public object QuantityPerUnit { get; private set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MessageLabel.Text = "";
@@ -64,7 +66,13 @@ namespace WebApp.SamplePages
                 {
                     ProductID.Text = info.ProductID.ToString();
                     ProductName.Text = info.ProductName;
+                    CategoryList.SelectedValue = info.CategoryID.HasValue ? info.CategoryID.ToString() : "0";
+                    SupplierList.SelectedValue = info.SupplierID.HasValue ? info.SupplierID.ToString() : "0";
+                    QuantityPerUnit = info.QuantityPerUnit.ToString();
                     UnitPrice.Text = string.Format("{0:0.00}", info.UnitPrice);
+                    UnitsInStock.Text=info.UnitsInStock.HasValue ? info.UnitsInStock.ToString() : "";
+                    UnitsOnOrder.Text = info.UnitsOnOrder.HasValue ? info.UnitsOnOrder.ToString() : "";
+                    ReorderLevel.Text = info.ReorderLevel.HasValue ? info.ReorderLevel.ToString() : "";
                     Discontinued.Checked = info.Discontinued;
                 }
             }
