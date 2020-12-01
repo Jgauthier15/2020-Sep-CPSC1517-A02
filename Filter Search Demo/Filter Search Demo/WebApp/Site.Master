@@ -57,6 +57,7 @@
                         <li><a runat="server" href="~/SamplePages/FilterSearches">SqlQuery</a></li>
                         <li><a runat="server" href="~/SamplePages/GridViewCodeBehind">GridView Code Behind</a></li>
                         <li><a runat="server" href="~/SamplePages/SearchUsingODS">Search Using ODS</a></li>
+                        <li><a runat="server" href="~/SamplePages/CRUD">CRUD single page</a></li>
                     </ul>
                 </div>
             </div>

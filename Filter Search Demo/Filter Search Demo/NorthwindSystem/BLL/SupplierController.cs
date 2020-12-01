@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 #region Additional Namespaces
 using NorthwindSystem.Entities;
-
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using NorthwindSystem.DAL;
-#endregion 
+using System.ComponentModel;
+#endregion
 
 namespace NorthwindSystem.BLL
 {
+    [DataObject]
     public class SupplierController
     {
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Supplier> Supplier_List()
         {
             //need to connect to the Context class
