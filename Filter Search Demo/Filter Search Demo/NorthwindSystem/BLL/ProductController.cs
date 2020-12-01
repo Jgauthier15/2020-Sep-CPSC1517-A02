@@ -103,6 +103,29 @@ namespace NorthwindSystem.BLL
             }
         }
 
+        public int Product_Add(Product item)
+        {
+            using(var context = new NorthwindContext())
+            {
+                //staging
+                //place your entity instance into your DbSet for processing by EntityFramework
+                //This data is in memory NOT yet on your Sql Database.
+                //This means that the Primary Key has NOT YET been created
+                //The Primary Key is created WHEN the data is sent to the database
+                context.Products.Add(item);
+
+                //commit your transaction to the database
+                //if the following command aborts, then your data record is NOT on the database,
+                //  the transaction is AUTOMATICALLY RolledBack
+                //After the success of the following command, the instance will be loaded with
+                //  your new Primary Key identity value
+                //IF you have entity VALIDATION ANNOTATION then when the following command
+                //  is executed, the entity validation annotation will be EXECUTED
+                context.SaveChanges();
+
+                return item.ProductID;
+            }
+        }
         #endregion
     }
 }
