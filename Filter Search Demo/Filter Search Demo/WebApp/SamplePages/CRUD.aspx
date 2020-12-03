@@ -185,7 +185,7 @@
                     </td>
                 </tr>
 
-                                <tr>
+                <tr>
                     <td align="right">
                         <asp:Label ID="Label11" runat="server" Text="Quantity Per Unit"></asp:Label>
                     </td>
@@ -242,12 +242,12 @@
 
                 <tr>
                     <td align="center" colspan="2">
-                        <asp:Button ID="Add" runat="server" Text="Add" height="33px" OnClick="Add_Click" width="74px" />
+                        <asp:Button ID="Add" runat="server" Text="Add" Height="33px" OnClick="Add_Click" Width="74px" />
                         &nbsp;&nbsp;
                         <asp:Button ID="Update" runat="server" Text="Update" OnClick="Update_Click" />
                         &nbsp;&nbsp;
                         <asp:Button ID="Disc" runat="server" Text="Disc."
-                            CausesValidation="false" height="33px" OnClick="Disc_Click" width="74px" />
+                            CausesValidation="false" Height="33px" OnClick="Disc_Click" Width="74px" />
                         &nbsp;&nbsp;
                     </td>
                 </tr>
@@ -267,10 +267,12 @@
                 Name="partialname" Type="String"></asp:ControlParameter>
         </SelectParameters>
     </asp:ObjectDataSource>
+
     <asp:ObjectDataSource ID="CategoryListODS" runat="server"
         OldValuesParameterFormatString="original_{0}"
         SelectMethod="Category_List"
         TypeName="NorthwindSystem.BLL.CategoryController"></asp:ObjectDataSource>
+
     <asp:ObjectDataSource ID="SupplierListODS" runat="server"
         OldValuesParameterFormatString="original_{0}"
         SelectMethod="Supplier_List"
