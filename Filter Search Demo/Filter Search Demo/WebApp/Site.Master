@@ -58,6 +58,7 @@
                         <li><a runat="server" href="~/SamplePages/GridViewCodeBehind">GridView Code Behind</a></li>
                         <li><a runat="server" href="~/SamplePages/SearchUsingODS">Search Using ODS</a></li>
                         <li><a runat="server" href="~/SamplePages/CRUD">CRUD single page</a></li>
+                        <li><a runat="server" href="~/SamplePages/UsingViewsPage">Search via a View Class</a></li>
                     </ul>
                 </div>
             </div>
