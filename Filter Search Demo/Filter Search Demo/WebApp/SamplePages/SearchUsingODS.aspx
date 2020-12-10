@@ -43,7 +43,7 @@
             <asp:GridView ID="ProductList" runat="server"
                 CssClass="table table-striped" GridLines="Horizontal"
                 BorderStyle="None" AutoGenerateColumns="False"
-                OnSelectedIndexChanged="ProductList_SelectedIndexChanged" 
+                OnSelectedIndexChanged="ProductList_SelectedIndexChanged"
                 DataSourceID="ProductListODS" AllowPaging="True"
                 PageSize="4">
                 <%-- /GridView --%>
@@ -64,13 +64,13 @@
                         <ItemStyle HorizontalAlign="Left"></ItemStyle>
                     </asp:TemplateField>
 
-                     <asp:TemplateField HeaderText="Cat">
+                    <asp:TemplateField HeaderText="Cat">
                         <ItemTemplate>
-                            <asp:DropDownList ID="CategoryList" runat="server" 
-                                DataSourceID="CategoryListODS" 
-                                DataTextField="CategoryName" 
+                            <asp:DropDownList ID="CategoryList" runat="server"
+                                DataSourceID="CategoryListODS"
+                                DataTextField="CategoryName"
                                 DataValueField="CategoryID"
-                                selectedvalue='<%# Eval("CategoryID") %>'>
+                                SelectedValue='<%# Eval("CategoryID") %>'>
                             </asp:DropDownList>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -141,19 +141,21 @@
         </div>
     </div>
     <%-- objectdatasource controls --%>
-    <asp:ObjectDataSource ID="ProductListODS" runat="server" 
-        OldValuesParameterFormatString="original_{0}" 
-        SelectMethod="Products_GetByPartialProductName" 
+    <asp:ObjectDataSource ID="ProductListODS" runat="server"
+        OldValuesParameterFormatString="original_{0}"
+        SelectMethod="Products_GetByPartialProductName"
         TypeName="NorthwindSystem.BLL.ProductController">
 
         <SelectParameters>
-            <asp:ControlParameter ControlID="ProductArg" 
-                PropertyName="Text" DefaultValue="gxvdgfv" 
+            <asp:ControlParameter ControlID="ProductArg"
+                PropertyName="Text" DefaultValue="gxvdgfv"
                 Name="partialname" Type="String"></asp:ControlParameter>
         </SelectParameters>
     </asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="CategoryListODS" runat="server" 
-        OldValuesParameterFormatString="original_{0}" 
-        SelectMethod="Category_List" 
+
+
+    <asp:ObjectDataSource ID="CategoryListODS" runat="server"
+        OldValuesParameterFormatString="original_{0}"
+        SelectMethod="Category_List"
         TypeName="NorthwindSystem.BLL.CategoryController"></asp:ObjectDataSource>
 </asp:Content>
