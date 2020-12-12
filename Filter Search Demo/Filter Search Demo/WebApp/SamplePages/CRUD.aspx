@@ -138,9 +138,9 @@
         <div class="col-md-6">
             <table>
                 <tr>
-                    <td align="right">
+                   
                         <asp:Label ID="Label3" runat="server" Text="Product ID:"></asp:Label>
-                    </td>
+                    
                     <td align="left">
                         <asp:Label ID="ProductID" runat="server"></asp:Label>
                     </td>
