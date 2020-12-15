@@ -14,7 +14,8 @@
     </div>
 
 
-    <asp:RequiredFieldValidator ID="RequiredProductArg" runat="server" ErrorMessage="A value for the product name is required."
+    <asp:RequiredFieldValidator ID="RequiredProductArg" runat="server" 
+        ErrorMessage="A value for the product name is required."
         Display="None" SetFocusOnError="true" ControlToValidate="ProductArg">
     </asp:RequiredFieldValidator>
     <div class="row">
