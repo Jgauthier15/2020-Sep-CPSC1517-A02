@@ -15,10 +15,10 @@
     </div>
 
 
-    <%--    <asp:RequiredFieldValidator ID="RequiredProductArg" runat="server"
+        <asp:RequiredFieldValidator ID="RequiredProductArg" runat="server"
         ErrorMessage="A value for the search product name is required."
         Display="None" SetFocusOnError="true" ControlToValidate="ProductArg">
-    </asp:RequiredFieldValidator>--%>
+    </asp:RequiredFieldValidator>
 
     <asp:RequiredFieldValidator ID="RequiredProductName" runat="server"
         ErrorMessage="A value for the product name is required."
